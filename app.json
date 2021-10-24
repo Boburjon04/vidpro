@@ -5,9 +5,9 @@
   "keywords": [
     "Youtube","Youtube Video Downloader"
   ],
-  "repository": "https://github.com/boburjon04/vidpro",
+  "repository": "https://github.com/Boburjon04/vidpro",
   "success_url": "https://t.me/VidProBot",
-  "website": "https://github.com/boburjon04/vidpro",
+  "website": "https://github.com/Boburjon04/vidpro",
   "env": {
         "API_ID": {"description": "Get this value from https://my.telegram.org", "required": true},
         "API_HASH": {"description": "Get this value from https://my.telegram.org" , "required": true},

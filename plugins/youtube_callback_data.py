@@ -1,6 +1,5 @@
 import asyncio
 import os
-import time
 
 from pyrogram import (Client,
                       InlineKeyboardButton,
@@ -15,8 +14,6 @@ from helper.ytdlfunc import downloadvideocli, downloadaudiocli
 from PIL import Image
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
-from plugins.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
-from config import Config
 
 @Client.on_callback_query()
 async def catch_youtube_fmtid(c, m):
@@ -76,34 +73,8 @@ async def catch_youtube_dldata(c, q):
 
     if not os.path.isdir(userdir):
         os.makedirs(userdir)
-                if round(diff % 5.00) == 0 or downloaded == total_length:
-                    percentage = downloaded * 100 / total_length
-                    speed = downloaded / diff
-                    elapsed_time = round(diff) * 1000
-                    time_to_completion = round(
-                        (total_length - downloaded) / speed) * 1000
-                    estimated_total_time = elapsed_time + time_to_completion
-                    try:
-                        current_message = """**Download Status**
-File Size: {}
-Downloading: {}
-ETA: {}""".format(
-    url,
-    humanbytes(total_length),
-    humanbytes(downloaded),
-    TimeFormatter(estimated_total_time)
-)
-                        if current_message != display_message:
-                            await bot.edit_message_text(
-                                chat_id,
-                                message_id,
-                                text=current_message
-                            )
-                            display_message = current_message
-                    except Exception as e:
-                        logger.info(str(e))
-                        pass
-        return await response.release()
+    await q.edit_message_reply_markup(
+        InlineKeyboardMarkup([[InlineKeyboardButton("Yuklanyapti...", callback_data="down")]]))
     filepath = os.path.join(userdir, filext)
     # await q.edit_message_reply_markup([[InlineKeyboardButton("Tayyorlanmoqda..")]])
 

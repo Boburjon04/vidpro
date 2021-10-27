@@ -16,6 +16,7 @@ from PIL import Image
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from plugins.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
+from config import Config
 
 @Client.on_callback_query()
 async def catch_youtube_fmtid(c, m):

@@ -76,13 +76,6 @@ async def catch_youtube_dldata(c, q):
 
     if not os.path.isdir(userdir):
         os.makedirs(userdir)
-    chunk = await response.content.read(Config.CHUNK_SIZE)
-                if not chunk:
-                    break
-                f_handle.write(chunk)
-                downloaded += Config.CHUNK_SIZE
-                now = time.time()
-                diff = now - start
                 if round(diff % 5.00) == 0 or downloaded == total_length:
                     percentage = downloaded * 100 / total_length
                     speed = downloaded / diff
@@ -92,7 +85,6 @@ async def catch_youtube_dldata(c, q):
                     estimated_total_time = elapsed_time + time_to_completion
                     try:
                         current_message = """**Download Status**
-URL: {}
 File Size: {}
 Downloading: {}
 ETA: {}""".format(
